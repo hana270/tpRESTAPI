@@ -1,0 +1,35 @@
+<head>
+  <link rel="stylesheet"  href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<h1>
+  Angular HTTP Service Example
+  </h1>
+  <table border="1" style="width: 40%">
+    <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Status</th>
+    <th>les_Modifications</th>
+    </tr>
+    <tr *ngFor="let emp of employees">
+      <td>{{ emp.id }}</td>
+      <td><input #name type="text" id="name" name="name" value="{{ emp.name }}"/></td>
+      <td><input #status type="text" id="status" name="status" value="{{ emp.status }}"/></td>
+      <td>
+        <button class="btn btn-primary" (click)="updateEmployee(emp, name.value, status.value)">Update</button>
+        <button class="btn btn-danger" (click)="deleteEmployee(emp.id)">Delete</button>
+      </td>
+    </tr>
+  </table>
+  <br />
+
+<h2>Add New Employee</h2>
+<form #employeeForm="ngForm" (ngSubmit)="addEmployee(employeeForm.value.name, employeeForm.value.status)">
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name" ngModel required>
+
+  <label for="status">Status:</label>
+  <input type="text" id="status" name="status" ngModel required>
+
+  <button class="btn btn-success"type="submit">Add Employee</button>
+</form>
